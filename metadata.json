@@ -1,6 +1,6 @@
 {
-    "name": "Pop Shell",
-    "description": "Pop Shell",
+    "name": "Sebatt Pop Shell",
+    "description": "sebatt90's fork of Pop Shell",
     "version": 2,
     "uuid": "pop-shell@system76.com",
     "settings-schema": "org.gnome.shell.extensions.pop-shell",
