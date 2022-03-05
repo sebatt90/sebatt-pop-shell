@@ -286,8 +286,11 @@ function parse_number(text: string): number {
 }
 
 function show_title(ext: Ext): any {
-    const t = toggle(_("Show Window Titles"), ext.settings.show_title(), (toggle: any) => {
-        ext.settings.set_show_title(toggle.state);
+    const t = toggle(_("Show Window Titles (tiled mode)"), ext.settings.show_title(), (toggle: any) => {
+        if (ext.auto_tiler){
+            ext.settings.set_show_title(toggle.state);
+        }
+        
     });
 
     return t;

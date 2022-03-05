@@ -84,7 +84,7 @@ function settings_dialog_view(): [AppWidgets, Gtk.Container] {
     });
 
     let win_label = new Gtk.Label({
-        label: "Show Window Titles",
+        label: "Show Window Titles (tiled mode)",
         xalign: 0.0,
         hexpand: true
     });
