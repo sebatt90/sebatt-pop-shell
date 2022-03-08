@@ -713,19 +713,16 @@ export class Forest extends Ecs.World {
             this.stacks.remove(stack.idx)?.destroy();
             on_last();
         } else {
-            const idx = Node.stack_remove(this, stack, window);
+            const s = this.stacks.get(stack.idx)
+            if (s) {
+                const win = ext.windows.get(window)
+                if (win && win.destroying) {
+                    s.activate_prev()
+                    ext.windows.get(s.active)?.activate()
+                    ext.register_fn(() => ext.windows.get(s.active)?.activate())
+                }
 
-            // Activate the next window in the stack if the window was destroyed.
-            if (idx !== null) {
-                ext.register_fn(() => {
-                    const s = this.stacks.get(stack.idx);
-                    if (s && s.prev_active) {
-                        s.activate(s.prev_active)
-                        if (!ext.windows.contains(window)) {
-                            ext.windows.with(s.prev_active, (win) => win.activate(false))
-                        }
-                    }
-                })
+                Node.stack_remove(this, stack, window)
             }
         }
 
